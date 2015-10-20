@@ -1,0 +1,491 @@
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+
+
+
+/*** Utility transition ***/
+
+.transition {
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+
+/* Player status messages */
+
+#apm_player_status {
+    border: none;
+    padding: 0;
+    height: 0px;
+    margin: 0;
+    clear: both;
+}
+
+#apm_player_status h1 {
+    font-size: 18px;
+}
+
+#apm_player_status.warning, #apm_player_status.alert {
+    background: #fff;
+    border: 3px solid #999;
+    padding: 0 10px;
+    margin-bottom: 1em;
+    font-size: 0.75em;
+    height: auto;
+}
+
+#apm_player_status.warning {
+    background: #ffe9e9;
+    border-color: red;
+}
+
+#apm_player_status.alert {
+    background: #fff0d4;
+    border-color: orange;
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+
+
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* For image replacement */
+.ir { border: 0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent; }
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden { display: none !important; visibility: hidden; }
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* Contain floats: h5bp.com/q */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+.hide-text { text-indent: 100%; white-space: nowrap; overflow: hidden; }
+
+/* ==|== DEBUGING styles =======================================================
+   formats the soundmanger on-screen debug divs, when ?debug=true
+   ========================================================================== */
+
+
+#soundmanager-debug {
+    background: #fff;
+    padding-left: 0.75em;
+    border: 2px solid #ddeeff;
+    font-size: 12px;
+    line-height: 1.7em;
+}
+
+#soundmanager-debug {
+    position: fixed;
+    _position: absolute; /* IE <7 */
+    bottom: 1em;
+    right: 1em;
+    height: 20em;
+    width: 500px;
+    overflow: auto;
+    padding: 0px;
+    margin: 1em 6px 6px 1em;
+    opacity: 0.95;
+    color: #333;
+    border: 1px solid #ccddee;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background: #f3f9ff;
+    z-index: 10;
+    font-size: small;
+    line-height: 1.2em;
+}
+
+
+#soundmanager-debug div {
+    padding-left: 0.5em;
+    margin: 0px;
+    padding: 0.25em 0px;
+    font-size: 12px;
+    color: #333;
+}
+
+#soundmanager-debug div.sm2-alt {
+    background-color: #fff;
+    color: #556677;
+}
+
+#live-debug {
+    display: table;
+    display: block;
+}
+
+#live-debug #soundmanager-debug .sm2-alt {
+    background-color: #f3f9ff;
+    color: #336699;
+}
+
+.controls {
+    width: 75px;
+    height: 75px;
+    margin: 10px 15px 0 10px;
+    position: absolute;
+    padding-right: 0px;
+    float: left;
+    cursor: pointer;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.31);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.31);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.31); 
+}
+
+.play {
+    background: url('/resources/img/playbtn.png') 34px 30px no-repeat;
+    background-color: #000;
+
+}
+
+.rw {
+    background: url('/resources/img/rw.png') 0px 0px no-repeat;
+    margin-left: 5px;
+    height: 32px;
+    width: 32px;
+    top: 27px;
+    position: absolute;
+}
+
+.ff {
+    background: url('/resources/img/ff.png') 0px 0px no-repeat;
+    margin-left: 120px;
+    height: 32px;
+    width: 32px;
+    top: 27px;
+    position: absolute;
+}
+
+.play:hover {
+    background-color: rgb(250, 75, 42);
+}
+
+.pause:hover {
+    background-color: rgb(250, 75, 42);
+}
+
+.pause {
+    background: url('/resources/img/pausebtn.gif') 4px 16px no-repeat;
+    background-color: #000;
+    display: none;
+}
+
+#apm_song_title {
+    font-family: BebasNeue, sans-serif;
+    font-size: 4.5vmin;
+    line-height: 2vmin;
+    margin-top: 4px;
+    margin-left: 5px;
+    color: black;
+}
+
+#apm_song_artist {
+    font-family: Arial, sans-serif;
+    font-size: 2.5vmin;
+    margin-left: 5px;
+    padding-bottom: 5px;
+    line-height: 2.8vmin;
+    color: #fa4b2a;
+}
+
+#apm_song_info {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    margin-top: 0px;
+    color: black;
+    float: left;
+}
+
+#apm_song_details_container {
+    position: absolute;
+    left: 90px;
+    padding-top: 10px;
+    height: 64px;
+    overflow: hidden;
+}
+
+#apm_volume_bar .ui-widget-header {
+    background: #666;
+    width: 3px;
+}
+
+
+#apm_media_wrapper {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding: 0px;
+    overflow: hidden;
+}
+
+/*** MAIN PLAYER STYLE ***/
+#apm_player_controls {
+    background-color: #f4f4f4;
+    border: 1px solid #fff;
+    height: 100px;
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+#apm_player_controls a:active {
+    outline: none;
+    -moz-outline-style: none;
+}
+
+#apm_player_controls a:focus {
+    outline: none;
+    -moz-outline-style: none;
+}
+
+
+/*** These styles handle the widths necessary to accomodate various widths of the play bar ***/
+.no-playtime.no-volume #apm_player_bar_wrapper {
+    width: 245px;
+}
+.no-playtime.volume #apm_player_bar_wrapper {
+    width: 10px;
+    margin-right: 10px;
+}
+
+.volume.playtime #apm_player_bar_container {
+    margin-top: -5px;
+    margin-left: 10px;
+    padding-right: 15px;
+    width: 90%;
+}
+.volume.playtime #apm_player_bar_wrapper {
+    margin-top: -5px;
+    margin-left: 10px;
+    padding-right: 15px;
+    width: 90%;
+}
+
+.no-volume.playtime #apm_player_bar_wrapper {
+    margin-left: 10px;
+    padding-right: 15px;
+    width: 90%;
+}
+
+.no-volume.playtime #apm_player_bar_container {
+    margin-left: 10px;
+    padding-right: 15px;
+    width: 90%;
+}
+
+/*** END conditional classes ***/
+
+#apm_player_bar_wrapper {
+    display: block;
+    float: right;
+    position: relative;
+    top: 80px;
+    left: 40px;
+}
+
+#apm_player_playtime {
+    line-height: 1.2em;
+    color: #000;
+    text-align: right;
+    font-size: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    position: relative;
+    float: right;
+    padding-top: 5px;
+    z-index: 50;
+}
+
+#apm_player_bar.buffering {
+    background-color: #fa4b2a;
+}
+
+#apm_player_bar.streaming {
+    background-color: #fa4b2a;
+}
+
+#apm_player_bar.streaming .ui-slider-handle {
+    display: none;
+}
+
+/*** $_ui tweaks ***/
+
+#apm_player_loading {
+    background-color: #fa4b2a;
+    position: absolute;
+    width: 0px;
+    height: 100%;
+}
+
+#apm_player_bar {
+    z-index: 10;
+}
+
+#apm_player_bar.ui-slider-horizontal {
+    background-color: #777;
+    border: none;
+    height: 5px;
+    width: 100%;
+}
+
+#apm_player_bar .ui-widget-header {
+    background-color: #000;
+
+}
+
+#apm_player_bar .ui-slider-handle {
+    background-color: #000;
+    border: 1px solid #000;
+    margin-left: -5px;
+    height: 10px;
+    width: 10px;
+    -moz-border-radius-topleft: 8px; -webkit-border-top-left-radius: 8px; -khtml-border-top-left-radius: 8px; border-top-left-radius: 8px;
+    -moz-border-radius-topright: 8px; -webkit-border-top-right-radius: 8px; -khtml-border-top-right-radius: 8px; border-top-right-radius: 8px;
+    -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px;
+}
+
+/** VOLUME BAR/SLIDER **/
+
+
+#apm_player_volume_wrapper {
+    width: 5px;
+    height: 32px;
+    margin: 0px;
+    position: relative;
+    float: right;
+    overflow: visible;
+}
+
+#apm_player_volume_status {
+    background: url('sprite.png') -2px -5px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 75px;
+    right: 7px;
+    float: right;
+    overflow: visible;
+    cursor: pointer;
+}
+
+#apm_player_volume_status.muted {
+    background: url('sprite.png') -37px -4px;
+}
+
+
+#apm_player_volume_status:hover {
+    width: 25px;
+}
+
+
+#apm_player_volume_slider_wrapper {
+    width: 5px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+#apm_player_volume_slider_container {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 10px;
+    height: 60px;
+    cursor: pointer;
+}
+
+/*----RESPONSIVE ---*/
+
+@media (max-width: 720px) {
+    #apm_song_info {
+        display: none !important; visibility: hidden;
+    }
+
+    #apm_player_volume_wrapper {
+        display: none !important; visibility: hidden;
+    }
+
+    #apm_song_artist {
+        display: none !important; visibility: hidden;
+    }
+    #apm_song_title {
+        display: none !important; visibility: hidden;
+    }
+
+    #apm_player_bar_wrapper {
+        position: absolute;
+        top: 58px;
+        left: 90px;
+    }
+
+        /*** These styles handle the widths necessary to accomodate various widths of the play bar ***/
+    .no-playtime.no-volume #apm_player_bar_wrapper {
+        width: 245px;
+    }
+    .no-playtime.volume #apm_player_bar_wrapper {
+        width: 10px;
+        margin-right: 10px;
+    }
+
+    .volume.playtime #apm_player_bar_container {
+        margin-top: -5px;
+        margin-left: 10px;
+        padding-right: 15px;
+        width: 85%;
+    }
+    .volume.playtime #apm_player_bar_wrapper {
+        margin-top: -5px;
+        margin-left: 10px;
+        padding-right: 15px;
+        width: 85%;
+    }
+
+    .no-volume.playtime #apm_player_bar_wrapper {
+        margin-left: 10px;
+        padding-right: 15px;
+        width: 85%;
+    }
+
+    .no-volume.playtime #apm_player_bar_container {
+        margin-left: 10px;
+        padding-right: 15px;
+        width: 85%;
+    }
+
+}

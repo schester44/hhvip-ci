@@ -1,0 +1,10 @@
+.doksoft-drag-n-drop-hover {
+    height: 100%;
+    margin: 18px;
+}
+
+.doksoft-drag-n-drop-hover body {
+    border: 2px dashed cornflowerblue;
+    min-height: 97%;
+    margin: 0;
+}

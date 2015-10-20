@@ -1,0 +1,39 @@
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{SERVER_PORT} 80 
+    RewriteRule ^(.*)$ https://hiphopvip.com/$1 [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+    RewriteCond %{REQUEST_URI} ^application.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule> 
+
+
+# CUSTOM ADDED SHIT BELOW THIS LINE #
+
+# BEGIN EXPIRES
+#cache html and htm files for one day
+<FilesMatch ".(html|htm)$">
+Header set Cache-Control "max-age=43200"
+</FilesMatch>
+
+#cache css, javascript and text files for one week
+<FilesMatch ".(js|css|txt)$">
+Header set Cache-Control "max-age=604800"
+</FilesMatch>
+
+#cache flash and images for one month
+<FilesMatch ".(flv|swf|ico|gif|jpg|jpeg|png)$">
+Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+#disable cache for script files
+<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+Header unset Cache-Control
+</FilesMatch>
+# END EXPIRES

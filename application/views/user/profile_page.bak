@@ -1,0 +1,66 @@
+<div id="content" class="content section row">
+    <div class="col-md-8 bg-base col-lg-8 col-xl-9">
+      <div class="ribbon ribbon-highlight">
+        <ol class="breadcrumb ribbon-inner">
+            <li><a href="<?php echo base_url(); ?>">Home</a>
+            </li>
+            <li>
+                <?php echo $username; ?>'s PROFILE</li>
+        </ol>
+      </div>
+
+        <div class="col-md-3 col-lg-3 col-xl-3 hidden-xs hidden-sm">
+           <?php $this->load->view('user/sidebar'); ?>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+            <article class="entry style-single type-post">
+              <h2 class="bebas"><?php echo strtoupper($username."'s Profile"); ?>
+              </h2>
+              <?php $this->load->view('user/social_tabs'); ?>
+
+      <ul style="list-style-type: none;margin-left:-40px;">
+      <?php if ($songs) { ?>
+      <?php foreach ($songs as $key => $song): ?>
+
+        <?php 
+                    $songArtist = htmlspecialchars($song->song_artist, ENT_QUOTES);
+                    $songTitle   = htmlspecialchars($song->song_title, ENT_QUOTES);
+                    $songDesc    = htmlspecialchars($song->song_description, ENT_QUOTES);
+                    $songFeaturing = htmlspecialchars($song->featuring, ENT_QUOTES);
+      ?>
+                                        
+        <article class="entry style-media media type-post listEntry">
+
+                         <figure class="media-object pull-left list-image" style="height:65px">
+                <a href="<?php echo base_url('song/' . $username . '/' . $song->song_url) ?>" rel="bookmark">
+                <div id="votes_<?php echo $song->song_id; ?>" class="style-review-score">
+                    <?php echo $this->voting->vote_sum($song->upvotes, $song->downvotes); ?>
+                </div>
+
+                    <img src="<?php echo song_img($song->username, $song->song_url, $song->song_image, 64); ?>" data-src="<?php echo song_img($song->username, $song->song_url, $song->song_image, 64); ?>" width="54px" height="54px" />
+                    <noscript>
+                        <img src="<?php echo song_img($song->username, $song->song_url, $song->song_image, 64); ?>" width="54px" height="54px" />
+                    </noscript>
+                </a>
+
+            </figure>
+                  <div class="profileSongArtist blck"><a href="<?php echo base_url('song/'.$username.'/'.$song->song_url) ?>" title="Listen to <?php echo $songArtist; ?> - <?php echo $songTitle; ?>"><?php echo $songArtist; ?></a></div>
+                  <div class="profileSongTitle blck"><a href="<?php echo base_url('song/'.$username.'/'.$song->song_url) ?>" title="Listen to <?php echo $songArtist; ?> - <?php echo $songTitle; ?>"><?php echo $songTitle; ?></a></div>
+                  <div class="profileSongDesc">Released: <?php echo date('m-d-Y', $song->published_date); ?></div>
+              </article>
+                        <?php endforeach ?>
+                       <?php } else {
+                        if ($this->ion_auth->logged_in() && $this->ion_auth->user()->row()->username === $username) { ?>
+                         
+                        <div style="text-align:center;font-size:18px;">Looks like you haven't uploaded any songs yet!<br /> <a href="<?php echo base_url('upload'); ?>" class="btn btn-danger" title="Upload Songs">Upload A Song</a>
+                        </div>
+                        <?php } else { ?>
+                        <div style="text-align:center;font-size:18px;">This person has not uploaded any music.</div>
+                          <?php } // user
+                          } //else ?>
+
+                        </ul>
+                        <?php echo $pagination; ?>
+            </article>
+        </div>
+    </div><!--/.col-md-8.col-lg-8.col-xl-9-->

@@ -1,0 +1,17 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2015-10-15 17:44:02 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:18) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:44:16 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:18) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:45:17 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:16) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:45:27 --> Severity: Notice  --> Undefined variable: get /Applications/MAMP/htdocs/hhvip/application/controllers/search.php 16
+ERROR - 2015-10-15 17:45:27 --> Severity: Notice  --> Undefined variable: get /Applications/MAMP/htdocs/hhvip/application/controllers/search.php 17
+ERROR - 2015-10-15 17:45:27 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/system/core/Exceptions.php:185) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:45:50 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:18) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:45:57 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:18) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:46:02 --> Severity: Notice  --> Undefined index: QUERY_STRINsG /Applications/MAMP/htdocs/hhvip/application/controllers/search.php 16
+ERROR - 2015-10-15 17:46:02 --> Severity: Notice  --> Undefined index: q /Applications/MAMP/htdocs/hhvip/application/controllers/search.php 18
+ERROR - 2015-10-15 17:46:02 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/system/core/Exceptions.php:185) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:46:12 --> Severity: Notice  --> Undefined index: q /Applications/MAMP/htdocs/hhvip/application/controllers/search.php 18
+ERROR - 2015-10-15 17:46:12 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/system/core/Exceptions.php:185) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:46:54 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:15) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
+ERROR - 2015-10-15 17:46:58 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/hhvip/application/controllers/search.php:15) /Applications/MAMP/htdocs/hhvip/system/libraries/Session.php 675
