@@ -1,3 +1,5 @@
+# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. I would not use this except for idea generation.
+
 HHVIP
 ======
 Example code base for hiphopvip. Not for use in production. A codeigniter based social audio sharing and streaming platform with reddit like voting features (uses the reddit algorithm for ranking)
