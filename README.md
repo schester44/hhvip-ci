@@ -1,4 +1,4 @@
-# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. I would not use this except for idea generation.
+# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. I would not use this.
 
 HHVIP
 ======
