@@ -1,4 +1,4 @@
-# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. I would not use this.
+# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. This is the first project I ever created. Probably best not to use much of this cod
 
 HHVIP
 ======
@@ -12,6 +12,6 @@ Example code base for hiphopvip. Not for use in production. A codeigniter based 
 - User-created Playlist support && Artist-based playlist support
 
 #### Screenshots
-![Screenshot  Desktop] (http://i.imgur.com/vOLpDo6.png "screenshot")
-![Screenshot  Desktop] (http://i.imgur.com/A4pdxHc.png "remote and soundcloud upload support")
-![Screenshot  Desktop] (http://i.imgur.com/UQcPJGh.png "playlist support")
+![Screenshot  Desktop](http://i.imgur.com/vOLpDo6.png)
+![Screenshot  Desktop](http://i.imgur.com/A4pdxHc.png)
+![Screenshot  Desktop](http://i.imgur.com/UQcPJGh.png)
