@@ -1,4 +1,4 @@
-# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. This is the first project I ever created. Probably best not to use much of this cod
+# This repo is extremely outdated, does not utilize best practices, and likely has some xss vulnerabilities associated with it. This is the first project I ever created. Probably best not to use much of this code
 
 HHVIP
 ======
