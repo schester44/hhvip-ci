@@ -10,8 +10,3 @@ Example code base for hiphopvip. Not for use in production. A codeigniter based 
 - Admin backend with songs, playlist, videos, and user manager.
 - Semi-full featured blog (feature set is somewhat limited)
 - User-created Playlist support && Artist-based playlist support
-
-#### Screenshots
-![Screenshot  Desktop](http://i.imgur.com/vOLpDo6.png)
-![Screenshot  Desktop](http://i.imgur.com/A4pdxHc.png)
-![Screenshot  Desktop](http://i.imgur.com/UQcPJGh.png)
